@@ -5,6 +5,13 @@
     --input-val-color :#333333;
     --btn-color: #457B9D;
     --input-border-color: #d8d8d8;
+    --theme-primary:#008ffd;
+    --theme-primary-accent:#cbe8ff;
+    --bg-primary:#d6dae0;
+    --bg-secondary:#eaebec;
+    --bg-tertiary:#fdfdfd;
+    --text-primary:#1f1f25;
+    --text-secondary:#999fa6;
 }
 
 *{
@@ -232,18 +239,51 @@ main{
     gap: 200px;
     align-items: flex-start;
 }
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container label{
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container label,
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .label{
     color: var(--input-label-color);
     display: block;
     margin-bottom: 7px;
     font-size: 13px;
 }
+
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group{
     margin-bottom: 30px;
 }
 
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .input-wrapper{
     position: relative;
+}
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .file-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.audit-form-wrapper .audit-form-container .input-group .file-wrapper .file-preview{
+    display: none;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.audit-form-wrapper .audit-form-container .input-group .file-wrapper .file-preview.active{
+    display: flex;
+}
+
+.audit-form-wrapper .audit-form-container .input-group .file-wrapper .file-preview .chart {
+  width: 65px;
+  height: 65px;
+}
+
+.audit-form-wrapper .audit-form-container .input-group .file-wrapper .file-preview .remove-file {
+  border: none;
+  background: transparent;
+  /* font-size: 20px; */
+  cursor: pointer;
+}
+.audit-form-wrapper .audit-form-container .input-group .file-wrapper .file-preview .remove-file .close-img{
+    width: 10px;
 }
 
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .input-wrapper .error{
@@ -256,7 +296,8 @@ main{
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .input-wrapper.error .error{
     visibility: visible;
 }
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container label .mandatory{
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container label .mandatory,
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .label .mandatory{
     color: red;
 }
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container input{
@@ -271,41 +312,162 @@ main{
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container input[type="file"]{
     display: none;
 }
-/* .audit-datails-wrapper .audit-form-wrapper .audit-form-container input:focus{
-    border: none;
-    border-bottom: 1px solid var(--input-border-color);
-} */
+
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container input::placeholder{
     color: var(--input-val-color);
 }
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
+
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .date-text{
+    color: var(--input-val-color);
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--input-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    width: 280px;
+    position: relative;
 }
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container input[type="date"]{
-    background-image: url('../images/calendar.png');
-  background-position: right 10px center;
-  background-repeat: no-repeat;
-  background-size: 16px;
-  color: transparent; 
-  caret-color: transparent;
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .date-text.not-active{
+    border-bottom: 1px solid transparent;
 }
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container input[type="date"]:focus {
-  color: transparent;
-  caret-color: transparent;
+.audit-form-wrapper .audit-form-container .datepicker{
+    position: absolute;
+    max-width: 350px;
+    background-color: rgb(245, 245, 245);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    padding: 0px; 
+    max-height: 0;
+    overflow: hidden;
+    z-index: 2;
 }
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container .date-field {
-  position: relative;
+.audit-form-wrapper .audit-form-container .datepicker.active{
+    padding: 15px;
+    max-height: 411px;
+    overflow: visible;
+    
+}
+.audit-form-wrapper .audit-form-container .datepicker-top{
+    
+    margin-bottom: 20px;
 }
 
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container .visual-date {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--input-val-color);
-  font-size: 15px;
+.audit-form-wrapper .audit-form-container .date-btn-group{
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: -6px;
+    color: #000000cc;
+}
+.audit-form-wrapper .audit-form-container .date-btn-group button{
+    display: block;
+}
+.audit-form-wrapper .audit-form-container .datepicker-top .tag{
+    margin-right: 8px;
+    margin-top: 8px;
+    background-color: var(--bg-secondary);
+    border-radius: 5px;
+    padding: 8px 15px;
+    border: none;
+    font-size: 16px;
+}
+.audit-form-wrapper .audit-form-container .datepicker-top .tag:hover{
+    color: white;
+    background-color: var(--theme-primary);
+}
+.audit-form-wrapper .audit-form-container .datepicker-top .month-selector{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.audit-form-wrapper .audit-form-container .datepicker-top .month-selector .arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 12px;
+
+}
+
+.audit-form-wrapper .audit-form-container .datepicker-top .month-selector .month-name{
+    font-weight: 600;
+    font-size: 20px;
+}
+.audit-form-wrapper .audit-form-container .datepicker button{
+    cursor: pointer;
+    outline: none;
+}
+
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .days{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-row-gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .dates{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-row-gap: 15px;
+}
+
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .day, 
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .date{
+    justify-self: center;
+} 
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .day{
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 16px;
+    justify-self: center;
+}
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .date{
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 29px;
+    height: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: block;
+    font-size: 17px;
+    font-weight: 500;
+}
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .date:focus{
+    /* color: #fff; */
+    border: 2px solid rgba(53, 53, 53, 0.8);
+    /* background-color: var(--theme-primary); */
+    font-weight: 600;
+}
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .date.faded:focus{
+    color: var(--text-secondary);
+    border: 2px solid transparent;
+    pointer-events: none;
+    font-weight: 500;
+    background-color: transparent;
+}
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .date.faded{
+    color: var(--text-secondary);
+}
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .date.current-date{
+    border: 2px solid  rgba(0,0,0,0.8);
+}
+.audit-form-wrapper .audit-form-container .datepicker .datepicker-calendar .date.current-day{
+      color: white;
+
+    border: 2px solid  rgba(0,0,0,0.8);
+    background-color: var(--theme-primary);
+}
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .browse-btn{
     color: var(--bg-blue-color);
     border: 1px solid var(--bg-blue-color);
@@ -314,25 +476,66 @@ main{
     border-radius: 3px;
 }
 
-
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .select-wrapper {
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select {
     position: relative;
     width: 280px;
+    cursor: pointer;
+    user-select: none;
+    /* margin-bottom: 100px; */
 }
 
-.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .select-wrapper select {
-    -webkit-appearance: none;
-    appearance: none;
-    /* padding-right: 30px;  */
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select .selected-item{
+    color: var(--input-val-color);
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--input-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+}
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select .selected-item img{
+    transition: transform 0.2s ease;
+    transform: rotate(0);
+}
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select .selected-item img.active{
+    transform: rotate(180deg);
+}
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select .option-list{
+    position: absolute;
+    max-height: 200px;
+    overflow-y: auto;
+    top: 30px;
+    /* border: 1px solid rgba(0,0,0,0.2); */
+    z-index: 2;
     width: 100%;
-        border: none;
-        border-bottom: 1px solid var(--input-border-color);
-        color: var(--input-val-color);
-        padding-bottom: 7px;
-        outline: none;
-        font-size: 15px;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* height:0; */
+    /* transition: 0.4s linear 0.1s; */
+    display: none;
 }
-
+/* .audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select .option-list::-webkit-scrollbar{
+    background-color: #eee;
+    width: 4px;
+}
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select .option-list::-webkit-scrollbar-thumb{
+    background-color: var(--bg-blue-color);
+} */
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .custom-select.active .option-list{
+    height: 88px;
+    display: block;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .option-list li{
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .option-list li.active,
+.audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .option-list li:hover{
+    background-color: var(--bg-blue-color);
+    color: white;
+}
 
 .audit-datails-wrapper .audit-form-wrapper .audit-form-container .input-group .select-wrapper::after {
   content: "";

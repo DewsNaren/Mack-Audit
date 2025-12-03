@@ -80,13 +80,38 @@
                                     </div>
                                 </div>
                                 <div class="input-group">
-                                    <label for="date_of_inspection">Date Of Inspection<span class="mandatory">*</span>
-                                    </label>
+                                    <div class="label" for="date_of_inspection">Date Of Inspection<span class="mandatory">*</span>
+                                    </div>
                                     <div class="input-wrapper">
-                                        <div class="date-field">
-                                            <input type="date" name="Date Of Inspection" id="date_of_inspection" value="2025-12-02">
-                                            <div class="visual-date">02/12/2025</div>
+                                        <div class="date-text">02/12/2025<img src="./assets/images/calendar.png" alt="calendar"></div>
+                                        <div class="datepicker">
+                                            <div class="datepicker-top">
+                                                <div class="date-btn-group">
+                                                    <button type="button" data-type="yesterday" class="tag">Yesterday</button>
+                                                    <button type="button" data-type="today" class="tag">Today</button>
+                                                    <button type="button" data-type="tomorrow" class="tag">Tommorow</button>
+                                                </div>
+                                                <div class="month-selector">
+                                                    <button type="button" class="arrow prev-month"><img src="./assets/images/left.png" alt="left"></button>
+                                                    <span class="month-name">December 2025</span>
+                                                    <button type="button" class="arrow next-month"><img src="./assets/images/right.png" alt="right"></button>
+                                                </div>
+                                            </div>
+                                            <div class="datepicker-calendar">
+                                                <div class="days">
+                                                    <span class="day">Sun</span>
+                                                    <span class="day">Mon</span>
+                                                    <span class="day">Tue</span>
+                                                    <span class="day">Wed</span>
+                                                    <span class="day">Thu</span>
+                                                    <span class="day">Fri</span>
+                                                    <span class="day">Sat</span>
+                                                </div>
+                                                <div class="dates">
+                                                </div>                             
+                                            </div>
                                         </div>
+                                        <input type="hidden" name="Date of Inspection" class="date-input">
                                         <p class="error">please provide the date of inspection</p>
                                     </div>
                                 </div>
@@ -110,8 +135,16 @@
                                     <label for="attach_file">Attach a File <span class="mandatory">*</span>
                                     </label>
                                     <div class="input-wrapper">
-                                        <button for="attach_file" class="browse-btn">Browse</button>
-                                        <input type="file" id="attach_file">
+                                        <div class="file-wrapper">
+                                            <button for="attach_file" type="button" class="browse-btn">Browse</button>
+                                            <div class="file-preview">
+                                                <div id="progressChart" class="chart"></div>
+                                                <span class="file-info"></span>
+                                                <button type="button" class="remove-file"><img src="./assets/images/close.png" class="close-img" alt="close"></button>
+                                            </div>
+                                        </div>
+                                        
+                                        <input type="file" id="attach_file" class="attach-file">
                                         <p class="error">please attach the file</p>
                                     </div>
                                 </div>
@@ -127,58 +160,87 @@
                                 </div>
                                 
                                 <div class="input-group">
-                                    <label for="date_of_build">Date Of Build<span class="mandatory">*</span>
-                                    </label>
+                                    <div class="label" for="date_of_build">Date Of Build<span class="mandatory">*</span>
+                                    </div>
                                     <div class="input-wrapper">
-                                        <div class="date-field">
-                                            <input type="date" name="Date Of build" id="date_of_build" value="2025-12-02">
-                                            <div class="visual-date">02/12/2025</div>
+                                        <div class="date-text">02/12/2025<img src="./assets/images/calendar.png" alt="calendar"></div>
+                                        <div class="datepicker">
+                                            <div class="datepicker-top">
+                                                <div class="date-btn-group">
+                                                    <button type="button" data-type="yesterday" class="tag">Yesterday</button>
+                                                    <button type="button" data-type="today" class="tag">Today</button>
+                                                    <button type="button" data-type="tomorrow" class="tag">Tommorow</button>
+                                                </div>
+                                                <div class="month-selector">
+                                                    <button type="button" class="arrow prev-month"><img src="./assets/images/left.png" alt="left"></button>
+                                                    <span class="month-name">December 2025</span>
+                                                    <button type="button" class="arrow next-month"><img src="./assets/images/right.png" alt="right"></button>
+                                                </div>
+                                            </div>
+                                            <div class="datepicker-calendar">
+                                                <div class="days">
+                                                    <span class="day">Sun</span>
+                                                    <span class="day">Mon</span>
+                                                    <span class="day">Tue</span>
+                                                    <span class="day">Wed</span>
+                                                    <span class="day">Thu</span>
+                                                    <span class="day">Fri</span>
+                                                    <span class="day">Sat</span>
+                                                </div>
+                                                <div class="dates">
+                                                </div>                             
+                                            </div>
                                         </div>
+                                        <input type="hidden" name="Date Of Build" class="date-input">
                                         <p class="error">please provide the date of build</p>
                                     </div>
                                 </div>
                                 <div class="input-group">
-                                    <label for="vessel_type">Vessel Type <span class="mandatory">*</span>
-                                    </label>
+                                    <div class="label">Vessel Type <span class="mandatory">*</span>
+                                    </div>
                                     <div class="input-wrapper">
-                                        <div class="select-wrapper">
-                                            <select id="vessel_type" name="Vessel Type">
-                                                <option value="dry cargo">Dry Cargo</option>
-                                                <option>One</option>
-                                                <option>Two</option>
-                                            </select>
+                                        <div class="custom-select">
+                                            <div class="selected-item">Select Vessel Type <img src="./assets/images/drop-down.png" alt="drop-down"></div>
+                                            <ul class="option-list vessel-list">
+                                                <li data-value="Dry Cargo">Dry Cargo</li>
+                                                <li data-value="One">One</li>
+                                                <li data-value="Two">Two</li>
+                                            </ul>
+                                            <input type="hidden" name="Vessel Type" class="real-value">
                                         </div>
-
+                                
                                         <p class="error">please select the vessel type</p>
                                     </div>
                                 </div>
                                 <div class="input-group">
-                                    <label for="ship_yard">Ship Yard<span class="mandatory">*</span>
-                                    </label>
+                                    <div class="label" for="ship_yard">Ship Yard<span class="mandatory">*</span>
+                                    </div>
                                     <div class="input-wrapper">
-                                        <div class="select-wrapper">
-                                            <select id="ship_yard" name="Ship Yard">
-                                                <option value="Hyundai Heavy Industries">Hyundai Heavy Industries</option>
-                                                <option>One</option>
-                                                <option>Two</option>
-                                            </select>
+                                        <div class="custom-select">
+                                            <div class="selected-item">Select Ship Yard <img src="./assets/images/drop-down.png" alt="drop-down"></div>
+                                            <ul class="option-list ship-yard-list">
+                                                <li data-value="Hyundai Heavy Industries">Hyundai Heavy Industries</li>
+                                                <li data-value="One">One</li>
+                                                <li data-value="Two">Two</li>
+                                            </ul>
+                                            <input type="hidden" name="Ship Yard" class="real-value">
                                         </div>
-
                                         <p class="error">please select the ship yard</p>
                                     </div>
                                 </div>
                                 <div class="input-group">
-                                    <label for="ship_yard_country">Ship Yard Country<span class="mandatory">*</span>
-                                    </label>
+                                    <div class="label">Ship Yard Country<span class="mandatory">*</span>
+                                    </div>
                                     <div class="input-wrapper">
-                                        <div class="select-wrapper">
-                                            <select id="ship_yard_country" name="ship Yard Country">
-                                                <option value="korea">KOREA</option>
-                                                <option value="japan">JAPAN</option>
-                                                <option value="india">INDIA</option>
-                                            </select>
+                                         <div class="custom-select">
+                                            <div class="selected-item">Select ship yard country <img src="./assets/images/drop-down.png" alt="drop-down"></div>
+                                            <ul class="option-list ship-yard-country-list">
+                                                <li data-value="KOREA">KOREA</li>
+                                                <li data-value="JAPAN">JAPAN</li>
+                                                <li data-value="INDIA">INDIA</li>
+                                            </ul>
+                                            <input type="hidden" name="Ship Yard Country" class="real-value">
                                         </div>
-
                                         <p class="error">plesse select the ship yard country</p>
                                     </div>
                                 </div>
@@ -202,5 +264,8 @@
             </div>
         </section>
     </main>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
