@@ -1,20 +1,32 @@
 const header=document.querySelector("header");
-const menuBtn=document.querySelector(".menu-btn");
+const menuBar=document.querySelector(".menubar")
+const menuBtn=menuBar.querySelector(".menu-btn");
 const main=document.querySelector("main");
+const mainLogo= menuBar.querySelector(".logo");
+
 let menuOpen = true;
 
-function getLeftMargin() {
-  let vw = document.documentElement.clientWidth;
-    // return vw <= 1024 ? 178 :
-    // vw <= 1400 ? 236 :
-    // vw <= 1600 ? 278 : 333;
-  return 333;
-}
+// function getLeftMargin() {
+//   let vw = document.documentElement.clientWidth;
+//     // return vw <= 1024 ? 178 :
+//     // vw <= 1400 ? 236 :
+//     // vw <= 1600 ? 278 : 333;
+//   return 333;
+// }
 
 function applyLayout() {
-  const leftMargin = getLeftMargin();
-  main.style.marginLeft = menuOpen ? `${leftMargin}px` : "0";
-  header.style.left = menuOpen ? "0" : "-100%";
+  // const leftMargin = getLeftMargin();
+  // main.style.marginLeft = menuOpen ? `${leftMargin}px` : "0";
+  // main.style.marginLeft=0
+  if(menuOpen){
+    header.classList.remove("collapsed");
+    // main.classList.remove("not-")
+  }
+  else{
+    header.classList.add("collapsed")
+  }
+  // header.style.left = menuOpen ? "0" : "-5%";
+  // header.style.position=menuOpen ? "relative" : "absolute";
 }
 
 menuBtn.addEventListener('click', () => {
@@ -31,7 +43,6 @@ const auditForm=document.querySelector(".audit-form-wrapper .audit-form")
 const selectInputs=auditForm.querySelectorAll(".custom-select");
 selectInputs.forEach(select=>{
   const selectedItem=select.querySelector(".selected-item")
-  // const optionList=select.querySelector(".option-list");
   const options=select.querySelectorAll("li");
   const realInput = select.querySelector(".real-value");
   select.addEventListener('click',()=>{
@@ -46,12 +57,23 @@ selectInputs.forEach(select=>{
         const selectVal=option.getAttribute("data-value");
         selectedItem.childNodes[0].textContent=selectVal;
         realInput.value=selectVal;
+        const inputWrapper=realInput.closest(".input-wrapper")
+        if(realInput.value==""){
+          inputWrapper.classList.add("error");
+        }
+        else{
+           inputWrapper.classList.remove("error");
+        }
       })
     })
   })
    document.addEventListener("click", (e) => {
     if (!select.contains(e.target)) {
       select.classList.remove("active");
+      selectInputs.forEach(select=>{
+      const selectedItem=select.querySelector(".selected-item")
+      // selectedItem.querySelector("img").classList.remove("active");
+    })
     }
   });
 })
@@ -75,9 +97,11 @@ const fileInput=auditForm.querySelector(".attach-file");
 
 const filePreview = fileWrapper.querySelector(".file-preview");
 const fileInfo = filePreview.querySelector(".file-info");
+const fileName=fileInfo.querySelector(".file-name");
+const fileSize=fileInfo.querySelector(".file-size");
+const fileNameTooltip=fileInfo.querySelector(".tooltip");
 const removeBtn = filePreview.querySelector(".remove-file");
 
-console.log(removeBtn)
 fileInput.accept = ".xlsx, .xls";
 browseBtn.addEventListener("click",()=>{
   fileInput.click(); 
@@ -105,9 +129,12 @@ browseBtn.addEventListener("click",()=>{
   let formatted = formatSize(file.size);
   const sizeMB = file.size / (1024 * 1024);        
   const sizeText = sizeMB.toFixed(2);               
-  fileInfo.textContent = `${file.name} (${sizeText} MB)`;
-  fileInfo.textContent = `${file.name.slice(-10)} (${formatted})`;
-
+  // fileInfo.textContent = `${file.name} (${sizeText} MB)`;
+  fileName.textContent=`${file.name}`
+  fileNameTooltip.textContent=`${file.name}`
+  fileSize.textContent = `(${formatted})`;
+console.log(fileNameTooltip)
+// const randVal=Math.floor(Math.random()*11) +40
 
   Highcharts.chart("progressChart", {
     chart: {
@@ -172,7 +199,7 @@ browseBtn.addEventListener("click",()=>{
     }]
   },function (chart) {
     setTimeout(() => {
-      chart.series[0].points[0].update(76);
+      chart.series[0].points[0].update(100);
     }, 200);
   })
 })
@@ -182,63 +209,8 @@ removeBtn.addEventListener('click',(e)=>{
   e.preventDefault();
   filePreview.classList.remove("active")
 })
-const submitFormBtn=document.querySelector(".audit-form-outer-wrapper .audit-form-btn-container .submit-btn")
-const cancelFormBtn=document.querySelector(".audit-form-outer-wrapper .audit-form-btn-container .cancel-btn")
-
-
-const auditInputs=auditForm.querySelectorAll("input,select")
-
-auditInputs.forEach(inp=>{
-  console.log(inp)
-})
-
-function validateAuditForm(){
-  let isValid = true;
-
-  auditInputs.forEach((input) => {
-    const value = input.value.trim();
-    const inputWrapper = input.closest(".input-wrapper");
-    if (!inputWrapper) {
-      return;
-    }
-
-    const errorElement = inputWrapper.querySelector(".error");
-      if (value === "") {
-        isValid = false;
-        inputWrapper.classList.add("error");
-      } else {
-        inputWrapper.classList.remove("error");
-      }
-  });
-
-  return isValid;
-}
-submitFormBtn.addEventListener('click',(e)=>{
-  e.preventDefault();
-  if (validateAuditForm()) {
-    const auditData  = getAuditData();
-  }
-})
-
-function getAuditData() {
-  const auditFormData = {};
-  auditInputs.forEach((input) => {
-    if (input.value.trim() !== "") {
-      auditFormData[input.name] = input.value.trim();
-    }
-  });
-  return auditFormData;
-}
 
 const dateTexts=auditForm.querySelectorAll(".date-text");
-
-// function formatDMY(dateObj) {
-//   let d = String(dateObj.getDate()).padStart(2, "0");
-//   let m = String(dateObj.getMonth() + 1).padStart(2, "0");
-//   let y = dateObj.getFullYear();
-//   return `${d}/${m}/${y}`;
-// }
-
 
 const calendarDays = document.querySelectorAll(".custom-date-day");
 
@@ -348,7 +320,9 @@ function createDatepicker(datePicker) {
 
 
       if (selectedDate && d.date.toDateString() === selectedDate.toDateString()) {
-        btn.classList.add("current-day"); 
+        if(!btn.classList.contains("faded")){
+          btn.classList.add("current-day"); 
+        }
       }
      
       btn.addEventListener("click", () => {
@@ -380,6 +354,15 @@ function createDatepicker(datePicker) {
       
         datePicker.dataset.value = selectedDate.toISOString().split("T")[0];
         getSelectedDate(datePicker)
+        const parentEl=datePicker.parentElement;
+        const dateInp=parentEl.querySelector(".date-input");
+        const inputWrapper = dateInp.parentElement;
+        const errorElement = inputWrapper.querySelector(".error");
+        if(dateInp.value==""){
+          inputWrapper.classList.add("error");
+        } else {
+          inputWrapper.classList.remove("error");
+        }
       });
 
       datesContainer.appendChild(btn);
@@ -416,7 +399,7 @@ const datepickers=auditForm.querySelectorAll(".datepicker");
 
 datepickers.forEach(datePicker=>{
   createDatepicker(datePicker)
-  getSelectedDate(datePicker);
+  // getSelectedDate(datePicker);
 })
 
 function getSelectedDate(datePicker){
@@ -463,3 +446,154 @@ document.addEventListener("click", (e) => {
     }
   });
 });
+
+
+
+
+const formWrapper=document.querySelector(".audit-form-outer-wrapper");
+
+const chartWrapper=document.querySelector(".audit-chart-wrapper");
+
+
+const submitFormBtn=document.querySelector(".audit-form-outer-wrapper .audit-form-btn-container .submit-btn")
+const cancelFormBtn=document.querySelector(".audit-form-outer-wrapper .audit-form-btn-container .cancel-btn")
+
+
+const auditInputs=auditForm.querySelectorAll("input,select")
+
+
+
+function validateAuditForm(){
+  let isValid = true;
+
+  auditInputs.forEach((input) => {
+    const value = input.value.trim();
+    const inputWrapper = input.closest(".input-wrapper");
+    if (!inputWrapper) {
+      return;
+    }
+
+    const errorElement = inputWrapper.querySelector(".error");
+      if (value === "") {
+        isValid=false;
+        inputWrapper.classList.add("error");
+      } else {
+        inputWrapper.classList.remove("error");
+      }
+  });
+
+  return isValid;
+}
+auditInputs.forEach(input=>{
+  input.addEventListener('input',()=>{
+    if (validateAuditForm()) {
+      const inputWrapper=input.closest(".input-wrapper");
+      inputWrapper.classList.remove("error");
+    }
+  })
+})
+
+auditInputs.forEach(inp=> {
+    if(inp.id==="imo_number"){
+       inp.addEventListener("input", () => {
+      inp.value = inp.value.replace(/[^0-9]/g, "");
+      });
+    }
+    if(inp.id==="size"){
+       inp.addEventListener("input", () => {
+        inp.value = inp.value.replace(/[^0-9]/g, "");
+       })
+    }
+   
+  })
+submitFormBtn.addEventListener('click',(e)=>{
+  e.preventDefault();
+  if (validateAuditForm()) {
+    const auditData  = getAuditData();
+    sessionStorage.setItem("auditData",JSON.parse(auditData));
+    auditInputs.forEach(input=>{
+    const inputWrapper=input.closest(".input-wrapper");
+    inputWrapper.classList.remove("error");
+    })
+    formWrapper.classList.add("not-active");
+    chartWrapper.classList.add("active");
+    mainLogo.classList.add("active");
+
+    displayFormData();
+  }
+})
+
+cancelFormBtn.addEventListener("click",()=>{
+  auditForm.reset();
+  sessionStorage.removeItem("auditData")
+  auditInputs.forEach(input=>{
+    const inputWrapper=input.closest(".input-wrapper");
+    inputWrapper.classList.remove("error");
+  })
+  selectInputs.forEach(select=>{
+    const selectedItem=select.querySelector(".selected-item")
+    const options=select.querySelectorAll("li");
+    options.forEach(opt=>{
+      opt.classList.remove("active");
+    })
+    selectedItem.childNodes[0].textContent=selectedItem.dataset.select
+  })
+  datepickers.forEach(datePicker=>{
+    createDatepicker(datePicker)
+    getSelectedDate(datePicker);
+  })
+
+})
+
+function getAuditData() {
+  const auditFormData = {};
+  auditInputs.forEach((input) => {
+    if (input.value.trim() !== "") {
+      auditFormData[input.name] = input.value.trim();
+    }
+  });
+  return auditFormData;
+}
+
+const closeChartBtn=document.querySelector(".chart-header-btn-container .close-chart-btn");
+
+closeChartBtn.addEventListener('click',()=>{
+  mainLogo.classList.remove("active")
+    chartWrapper.classList.remove("active");
+    formWrapper.classList.remove("not-active");
+})
+
+const chartHeader=chartWrapper.querySelector(".audit-chart-header-wrapper .chart-header");
+const imoText=chartWrapper.querySelector(".imo-number")
+const formContentTexts=chartWrapper.querySelectorAll(".audit-form-content-wrapper .audit-form-content-container .form-content-text")
+
+function displayFormData(){
+  if(sessionStorage.getItem("auditData")){
+    const auditData=JSON.parse(sessionStorage.getItem("auditData"));
+  
+    for(let key in auditData){
+      if(key==="Vessel Name"){
+        chartHeader.textContent=auditData["Vessel Name"]
+      }
+      else if(key==="IMO Number"){
+        imoText.textContent=auditData["IMO Number"]
+      }
+      else{
+        formContentTexts.forEach(text=>{
+          const span=text.querySelector("span")
+      
+          const spanData=span.getAttribute("data-formVal");
+        
+          if(spanData==key){
+            span.textContent=auditData[key]
+          }
+        })
+      }
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  displayFormData()
+})
+
