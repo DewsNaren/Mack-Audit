@@ -212,7 +212,7 @@ function parseSheetAsJSON(sheetXML, sharedStrings = []) {
 const tableHeaderHtml=`
   <thead>
     <tr>
-      <th rowspan="2">Category</th>
+      <th rowspan="2" class="col-header">Category</th>
       <th colspan="4">POTENTIAL RISKS FINDINGS COUNT</th>
     </tr>
     <tr>
@@ -364,7 +364,11 @@ function renderLocateTable(locArr){
 }
 const riskChartContainer=document.querySelector(".audit-chart-wrapper .risk-chart-wrapper #risk-chart-container");
 
-Highcharts.chart(riskChartContainer, {
+function vwToPx(vw) {
+    return (vw / 100) * window.innerWidth;
+}
+
+const riskChart=Highcharts.chart(riskChartContainer, {
 
     chart: {
         type: 'gauge',
@@ -372,9 +376,11 @@ Highcharts.chart(riskChartContainer, {
         plotBackgroundImage: null,
         plotBorderWidth: 0,
         plotShadow: false,
-        height: '80%'
+        height: '80%',
     },
-
+    credits:{
+      enabled:false,
+    },
     title: {
         text: ''
     },
@@ -398,36 +404,35 @@ Highcharts.chart(riskChartContainer, {
             from: 0,
             to: 50,
             color:  '#fe0000', 
-            thickness: 25,
+            thickness: vwToPx(1.302),
             borderRadius: '0%'
         }, {
             from: 50,
             to: 75,
             color: ' #fed700', 
-            thickness: 25,
+            thickness: vwToPx(1.302),
             borderRadius: '0%'
         }, {
             from: 75,
             to: 100,
             color: '#00af50', 
-            thickness: 25,
+            thickness: vwToPx(1.302),
             borderRadius: '0%'
         }]
     },
 
     series: [{
         name: 'Speed',
-        data: [80],
+        data: [80.4],
         tooltip: {
             enabled:false
         },
         dataLabels: {
-            format: '{y} %',
+          useHTML:true,
+            format: '{y}',
             borderWidth: 0,
             color: '#333333',
-            style: {
-                fontSize: '16px'
-            }
+             y: 1
         },
         dial: {
           radius: '85%',
@@ -447,15 +452,15 @@ Highcharts.chart(riskChartContainer, {
     }]
 });
 
+
 const mainChartContainer=document.querySelector(".audit-chart-wrapper .main-chart-wrapper #main-chart-container")
 Highcharts.chart(mainChartContainer, {
-
     chart: {
         type: 'bubble',
         plotBorderWidth: 0,
         zooming: {
             type: 'xy'
-        }
+        },
     },
 
     legend: {
@@ -478,29 +483,35 @@ Highcharts.chart(mainChartContainer, {
     },
 
     xAxis: {
+      min:10,
+      max:150,
+      tickInterval:10,
         gridLineWidth: 0,
         title: {
             text: 'Total Weighted Score'
         },
         labels: {
-            format: '{value}'
+            format: '{value}',
+            useHTML:true,
         },
         tickWidth:0,
-    
+        lineWidth:0,
+       
     },
 
     yAxis: {
+      min:10,
+      max:70,
         startOnTick: false,
         endOnTick: false,
         title: {
             text: 'Total Findings'
         },
         labels: {
-            format: '{value}'
+            format: '{value}',
+            useHTML:true,
         },
         maxPadding: 0.2,
-  
-       
     },
 
     tooltip: {
@@ -518,48 +529,88 @@ Highcharts.chart(mainChartContainer, {
         series: {
             dataLabels: {
                 enabled: true,
+                useHTML:true,
                 format: '{point.name}'
             }
+
         }
     },
 
     series: [{
         data: [
-            { x: 95, y: 95, z: 13.8, name: 'BE', country: 'Belgium' },
-            { x: 86.5, y: 102.9, z: 14.7, name: 'DE', country: 'Germany' },
-            { x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland' },
-            { x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands' },
-            { x: 80.3, y: 86.1, z: 11.8, name: 'SE', country: 'Sweden' },
-            { x: 78.4, y: 70.1, z: 16.6, name: 'ES', country: 'Spain' },
-            { x: 74.2, y: 68.5, z: 14.5, name: 'FR', country: 'France' },
-            // { x: 73.5, y: 83.1, z: 10, name: 'NO', country: 'Norway' },
-            { x: 71, y: 93.2, z: 24.7, name: 'UK', country: 'United Kingdom' },
-            { x: 69.2, y: 57.6, z: 10.4, name: 'IT', country: 'Italy' },
-            { x: 68.6, y: 20, z: 16, name: 'RU', country: 'Russia' },
+            { x: 20, y: 60, z: 13.8, name: 'BE', country: 'Belgium'},
+            { x: 18, y: 64, z: 14.7, name: 'DE', country: 'Germany'},
+            { x: 30, y: 91.5, z: 15.8, name: 'FI', country: 'Finland'} ,
+            { x: 70, y: 44, z: 12, name: 'NL', country: 'Netherlands'}, 
+            { x: 60, y: 78, z: 11.8, name: 'SE', country: 'Sweden',} ,
+            { x: 30, y: 56, z: 16.6, name: 'ES', country: 'Spain' },
+            { x: 85, y: 43, z: 14.5, name: 'FR', country: 'France' },
+            { x: 76, y: 27, z: 24.7, name: 'UK', country: 'United Kingdom' },
+            { x: 64, y: 89, z: 16, name: 'RU', country: 'Russia' },
             {
                 x: 65.5,
-                y: 126.4,
+                y: 45,
                 z: 35.3,
                 name:
                     'US',
                 country: 'United States'
             },
-            { x: 65.4, y: 50.8, z: 28.5, name: 'HU', country: 'Hungary' },
-            { x: 63.4, y: 51.8, z: 15.4, name: 'PT', country: 'Portugal' },
-            { x: 64, y: 82.9, z: 31.3, name: 'NZ', country: 'New Zealand' }
+            { x: 116, y: 50, z: 28.5, name: 'HU', country: 'Hungary' },
+            { x: 94, y: 51, z: 15.4, name: 'PT', country: 'Portugal' },
+            { x: 104, y: 48, z: 31.3, name: 'NZ', country: 'New Zealand' }
         ],
-        colorByPoint: true
+  
     }],
     credits:{
       enabled:false
-    }
+    },
+    responsive: {
+    rules: [{
+        condition: {
+            minWidth: 1500   
+        },
+        chartOptions: {
+            chart: {
+                spacing: [5, 5, 5, 5],   
+                margin: [10, 10, 10, 10]
+            },
+            xAxis: {
+                maxPadding: 0.05,
+                minPadding: 0.05,
+                labels: {
+                    style: {
+                        fontSize: '9px'
+                    }
+                }
+            },
+            yAxis: {
+                maxPadding: 0.05,
+                minPadding: 0.05,
+                labels: {
+                    style: {
+                        fontSize: '9px'
+                    }
+                }
+            },
+            plotOptions: {
+                bubble: {
+                    minSize: 5,
+                    maxSize: 20  // smaller bubbles
+                }
+            }
+        }
+    }] 
+  }
 
 });
 
 //Findings Container
 const findingmainChart=document.querySelector(".findings-outer-wrapper .findings-inner-wrapper .findings-chart-container #main-chart-container");
-const findingMainLabels=["Document Management","Crew Management","ghh","ghgh","ghghdg","dfgd","Document Management","Crew Management","ghh","ghghdg"]
-const findingMainData=[14,28,19,33,23,45,14,28,19,33]
+
+const findingMainLabels= ["Document Management", "Crew Management", "ghh", "ghgh", "ghghdg", "dfgd", "Document Management", "Crew Management", "ghh"];
+const findingMainData = [14, 28, 19, 33, 23, 45, 14, 28, 19];
+const findingColor=["#70ffb0","#70ffb0","#70ffb0","#70ffb0","#70ffb0","#ff7884","#f8c06d","#f8c06d","#f8c06d","#70ffb0"]
+let runCount = 0;
 Highcharts.chart(findingmainChart, {
             chart: {
                 polar: true,
@@ -569,16 +620,22 @@ Highcharts.chart(findingmainChart, {
                 text: null
             },
             pane: {
-                size: '60%'
+                size: '70%'
             },
             xAxis: {
                 categories: findingMainLabels,
-                tickmarkPlacement: 'on',
+                tickmarkPlacement: 'off',
                 lineWidth: 0,
                 labels: {
-                    style: {
-                        fontSize: '16px'
+                  useHTML:true,
+                      formatter: function () {
+                
+                    if (runCount < findingColor.length-1) {
+                        runCount++; 
+                        return `<span><b class="point" style="color:${findingColor[this.pos]}">${findingMainData[this.pos]} </b>${findingMainLabels[this.pos]} </span>`;
                     }
+                    return ''; 
+                },
                 }
             },
             credits:{
@@ -601,180 +658,386 @@ Highcharts.chart(findingmainChart, {
                 name: 'Score',
                 data: findingMainData,
                 pointPlacement: 'on',
-                color: 'rgba(102, 126, 234, 0.5)',
-                fillColor: 'rgba(102, 126, 234, 0.3)',
+                color: '#4682a7',
+                fillColor: 'transparent',
                 lineWidth: 2,
                 marker: {
-                    enabled: true,
-                    radius: 4,
-                    fillColor: '#667eea'
+                    enabled: false,
                 }
             }],
 });
 
 const findingSubChart=document.querySelector(".findings-outer-wrapper .findings-inner-wrapper .findings-chart-container #sub-chart-container");
 
-Highcharts.chart(findingSubChart, {
+// Highcharts.chart( findingSubChart, {
+//     chart: {
+//         type: 'column',
+//     },
+
+//     title: {
+//         text: '',
+//         align: 'left',
+//     },
+
+//     xAxis: {
+//         categories: ['Certificate', 'Company Policy', 'Deck Equipment', 'Document'],
+//         labels:{
+//           useHTML:true,
+//         },
+//         dataLabels:{
+//           enabled:true
+//         },
+//         lineWidth: 0,
+
+//     },
+//     credits:{
+//       enabled:false,
+//     },
+//     yAxis: {
+//         min: 0,
+//         max:60,
+//         title: '',
+//         gridLineColor: '#d1d1d1',
+//          labels:{
+//           useHTML:true,
+//         },
+//     },
+
+//     legend: {
+//         enabled: false
+//     },
+
+//     plotOptions: {
+//         column: {
+//             stacking: 'normal',
+//             borderWidth: 0,
+//             pointPadding: 0.1,
+//             groupPadding: 0.15,
+//         },
+    
+//         series: {
+//             dataLabels: {
+//                 enabled: true,
+//                 useHTML:true,
+//             },
+//             states: {
+//                inactive: {
+//                 enabled: false
+//               },
+//                 hover: {
+//                     enabled: false
+//                 }
+//             },
+//           },
+//         },
+//     series: [
+//         {
+//             name: 'Red',
+//             color: '#ff7884',
+//             data: [28, 39, 8, 12]
+//         },
+//         {
+//             name: 'Orange',
+//             color: '#f8c06d',
+//             data: [17, 32, 22]
+//         },
+//         {
+//             name: 'Green',
+//             color: '#70ffb0',
+//             data: [9, 18, 17 ]
+//         }
+//     ]
+// });
+
+
+
+Highcharts.chart( findingSubChart, {
     chart: {
         type: 'column',
     },
+
     title: {
         text: '',
-        align: 'left'
+        align: 'left',
     },
+
     xAxis: {
-        categories: ['Arsenal', 'Chelsea', 'Liverpool', 'Manchester United'],
+        categories: ['Certificate', 'Company Policy', 'Deck Equipment', 'Document'],
+        labels:{
+          useHTML: true,
+          rotation: 0,
+          align: 'center',
+          style: {
+            textAlign: 'center',
+            whiteSpace: 'normal',
+            width: '70px'
+          }
+        },
         lineWidth: 0,
+    },
+    credits:{
+      enabled:false,
     },
     yAxis: {
         min: 0,
-        title: {
-            text: ''
+        max:60,
+        title: '',
+        gridLineColor: '#d1d1d1',
+         labels:{
+          useHTML:true,
         },
-        stackLabels: {
-            enabled: false
-        },
-        plotLineWidth: 0,
     },
+
     legend: {
         enabled: false
     },
-    tooltip: {
-        headerFormat: '<b>{category}</b><br/>',
-        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-    },
-    credits: {
-        enabled: false,
-    },
+
     plotOptions: {
         column: {
             stacking: 'normal',
+            borderWidth: 0,
+            pointPadding: 0.1,
+            groupPadding: 0.15,
+        },
+    
+        series: {
             dataLabels: {
-              enabled: true
+                enabled: true,
+                useHTML:true,
             },
-            borderWidth: 0 
+            states: {
+               inactive: {
+                enabled: false
+              },
+                hover: {
+                    enabled: false
+                }
+            },
+          },
+        },
+    series: [
+        {
+            name: 'Red',
+            color: '#ff7884',
+            data: [28, 39, 8, 12]
+        },
+        {
+            name: 'Orange',
+            color: '#f8c06d',
+            data: [17, 32, 22]
+        },
+        {
+            name: 'Green',
+            color: '#70ffb0',
+            data: [9, 18, 17 ]
         }
-    },
-    series: [{
-        name: 'Series 1',
-        data: [
-            { y: 3, color: "#ff7884" },
-            { y: 5, color: "#ff7884" },
-            { y: 1, color: "#f8c06d" },
-        ]
-    }, {
-        name: 'Series 2',
-        data: [
-            { y: 14, color: "#f8c06d" },
-            { y: 8, color: "#70ffb0" },
-            { y: 8, color: "#70ffb0" },
-            { y: 12, color: "#f8c06d" }
-        ]
-    }, {
-        name: 'Series 3',
-        data: [
-            { y: 2, color: "#70ffb0" },
-            { y: 2, color: "#70ffb0" },
-            { y: 6, color: "#ff7884" },
-            { y: 3, color: "#ff7884" }
-        ]
-    }]
+    ]
 });
-
 const findingsLocationChart=document.querySelector(".findings-outer-wrapper .findings-inner-wrapper .findings-chart-container #location-chart-container");
 
+// Highcharts.chart( findingsLocationChart, {
+//     chart: {
+//         type: 'column',
+//     },
 
-Highcharts.chart(findingsLocationChart, {
+//     title: {
+//         text: '',
+//         align: 'left',
+//     },
+
+//     xAxis: {
+//         categories: [
+//             "Accomodation",
+//             "CCR / Ship Office",
+//             "Engine Room",
+//             "Master's Office",
+//             "On Deck",
+//             "Steering Room",
+//             "Wheel House"
+//         ],
+//         labels:{
+//           useHTML:true,
+//         },
+//         lineWidth: 0,
+
+//     },
+//     credits:{
+//       enabled:false,
+//     },
+//     yAxis: {
+//         min: 0,
+      
+//         max:60,
+//         tickInterval: 10,  
+//         title: '',
+//         gridLineColor: '#d1d1d1',
+
+//          labels:{
+//           useHTML:true,
+//         },
+
+//     },
+
+//     legend: {
+//         enabled: false
+//     },
+
+//     plotOptions: {
+//         column: {
+//             stacking: 'normal',
+//             borderWidth: 0,
+//             pointPadding: 0.1,
+//             groupPadding: 0.15,
+//             states: {
+//                 hover: {
+//                     enabled: false
+//                 }
+//             }
+//         },
+    
+//         series: {
+//             dataLabels: {
+//                 enabled: true,
+//                 useHTML:true,
+//                 style:{
+//                   color:"var(--input-val-color)"
+//                 },
+//             },
+//           },
+//         },
+//     series: [
+//         {
+//             name: 'Red',
+//             data: [{
+//               y:2, color:'#f8c06d'},
+//              {
+//               y:19, color:'#ff7884'},
+//               {
+//               y:11, color:'#70ffb0'},
+//               {
+//               y:18, color:'#ff7884'},
+//               {
+//               y:33, color:'#f8c06d'},
+//               {
+//               y:8, color:'#f8c06d'},
+//               {
+//               y:18, color:'#f8c06d'},
+            
+//               ]
+//         },
+  
+//     ]
+// });
+
+
+Highcharts.chart( findingsLocationChart, {
     chart: {
-        type: 'column'
+        type: 'column',
+        marginBottom: 60, 
     },
+
     title: {
-        text: ''
-    },
-    subtitle: {
-        text: ''
+        text: '',
+        align: 'left',
     },
 
     xAxis: {
-        type: 'category'
-    },
-    yAxis: {
-        title: {
-            text: ''
-        }
+        categories: [
+            "Accomodation",
+            "CCR / Ship Office",
+            "Engine Room",
+            "Master's Office",
+            "On Deck",
+            "Steering Room",
+            "Wheel House"
+        ],
+        labels:{
+          useHTML: true,
+          rotation: 0,
+          align: 'center',
+          style: {
+            textAlign: 'center',
+            whiteSpace: 'normal',
+            wordBreak: 'break-word',
+            width: '50px',
+            fontSize: '10px',
+            lineHeight: '1.3'
+          }
+           
+        },
+        lineWidth: 0,
 
     },
+    credits:{
+      enabled:false,
+    },
+    yAxis: {
+        min: 0,
+        max:60,
+        tickInterval: 10,  
+        title: '',
+        gridLineColor: '#d1d1d1',
+         labels:{
+          useHTML:true,
+        },
+
+    },
+
     legend: {
         enabled: false
     },
+
     plotOptions: {
-        series: {
+        column: {
+            stacking: 'normal',
             borderWidth: 0,
+            pointPadding: 0.1,
+            groupPadding: 0.15,
+            states: {
+                hover: {
+                    enabled: false
+                }
+            }
+        },
     
-        }
-    },
-
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
-            '<b>{point.y:.2f}%</b> of total<br/>'
-    },
-
+        series: {
+            dataLabels: {
+                enabled: true,
+                useHTML:true,
+                style:{
+                  color:"var(--input-val-color)"
+                },
+            },
+          },
+        },
     series: [
         {
-            name: 'Browsers',
-            colorByPoint: true,
-            stacking: 'normal',
-            data: [
-                {
-                    name: 'Chrome',
-                    y: 63.06,
-                    
-                },
-                {
-                    name: 'Safari',
-                    y: 19.84,
-                    
-                },
-                {
-                    name: 'Firefox',
-                    y: 4.18,
-
-                },
-                {
-                    name: 'Edge',
-                    y: 4.12,
-                 
-                },
-                {
-                    name: 'Opera',
-                    y: 2.33,
-             
-                },
-                {
-                    name: 'Internet Explorer',
-                    y: 0.45,
-                    
-                },
-                {
-                    name: 'Other',
-                    y: 1.582,
-                   
-                }
-            ]
-        }
-    ],
-    credits:{
-      enabled:false
-    }
+            name: 'Red',
+            data: [{
+              y:2, color:'#f8c06d'},
+             {
+              y:19, color:'#ff7884'},
+              {
+              y:11, color:'#70ffb0'},
+              {
+              y:18, color:'#ff7884'},
+              {
+              y:33, color:'#f8c06d'},
+              {
+              y:8, color:'#f8c06d'},
+              {
+              y:18, color:'#f8c06d'},
+            
+              ]
+        },
+  
+    ]
 });
-
-//Weighted Container
- 
-
 const weightedmainChart=document.querySelector(".weighted-outer-wrapper .weighted-inner-wrapper .weighted-chart-container #main-chart-container");
-const weightedMainLabels=["Document Management","Crew Management","ghh","ghgh","ghghdg","dfgd","Document Management","Crew Management","ghh","ghghdg"]
-const weightedMainData=[14,28,19,33,23,45,14,28,19,33]
+const weightedMainLabels=["Document Management","Crew Management","ghh","ghgh","ghghdg","dfgd","Document Management","Crew Management","ghh","fgfg"]
+const weightedMainData=[14,28,19,33,23,45,14,28,19,33];
+const weightedColor=["#00af50","#00af50","#00af50","#00af50","#00af50","#e73845","#ff9f1d","#ff9f1d","#ff9f1d","#00af50"]
+let weightRunCount = 0;
 Highcharts.chart(weightedmainChart, {
             chart: {
                 polar: true,
@@ -791,9 +1054,16 @@ Highcharts.chart(weightedmainChart, {
                 tickmarkPlacement: 'on',
                 lineWidth: 0,
                 labels: {
-                    style: {
-                        fontSize: '16px'
-                    }
+                  useHTML:true,
+                   formatter: function () {
+             
+                if (weightRunCount < weightedColor.length-1) {
+                    weightRunCount++; 
+                    return `<span><b class="point" style="color:${weightedColor[this.pos]}">${weightedMainData[this.pos]} </b>${weightedMainLabels[this.pos]} </span>`;
+                }
+                return ''; 
+            }
+        
                 }
             },
             credits:{
@@ -801,7 +1071,7 @@ Highcharts.chart(weightedmainChart, {
             },
             yAxis: {
                 lineWidth: 0,
-                min: 10,
+                min:10,
                 max: 60,
                 tickInterval:10
             },
@@ -815,184 +1085,193 @@ Highcharts.chart(weightedmainChart, {
             series: [{
                 name: 'Score',
                 data: findingMainData,
-                pointPlacement: 'on',
-                color: 'rgba(102, 126, 234, 0.5)',
-                fillColor: 'rgba(102, 126, 234, 0.3)',
+                pointPlacement: 'off',
+                 color: '#4682a7',
+                fillColor: 'transparent',
                 lineWidth: 2,
                 marker: {
-                    enabled: true,
-                    radius: 4,
-                    fillColor: '#667eea'
+                    enabled: false,
                 }
             }],
 });
 
 const weightedSubChart=document.querySelector(".weighted-outer-wrapper .weighted-inner-wrapper .weighted-chart-container #sub-chart-container");
 
-Highcharts.chart(weightedSubChart, {
+Highcharts.chart( weightedSubChart, {
     chart: {
         type: 'column',
     },
+
     title: {
         text: '',
-        align: 'left'
+        align: 'left',
     },
+
     xAxis: {
-        categories: ['Arsenal', 'Chelsea', 'Liverpool', 'Manchester United'],
+        categories: ['Certificate', 'Company Policy', 'Deck Equipment', 'Document'],
+        labels:{
+          useHTML:true,
+        },
+
         lineWidth: 0,
+
+    },
+    credits:{
+      enabled:false,
     },
     yAxis: {
         min: 0,
-        title: {
-            text: ''
+        max:60,
+        title: '',
+        gridLineColor: '#d1d1d1',
+         labels:{
+          useHTML:true,
         },
-        stackLabels: {
-            enabled: false
-        },
-        plotLineWidth: 0,
+
     },
+
     legend: {
         enabled: false
     },
-    tooltip: {
-        headerFormat: '<b>{category}</b><br/>',
-        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-    },
-    credits: {
-        enabled: false,
-    },
+
     plotOptions: {
         column: {
             stacking: 'normal',
+            borderWidth: 0,
+            pointPadding: 0.2,
+            groupPadding: 0.1,
+        },
+    
+        series: {
             dataLabels: {
-              enabled: true
+                enabled: true,
+                useHTML:true,
             },
-            borderWidth: 0 
+            states: {
+               inactive: {
+                enabled: false
+              },
+                hover: {
+                    enabled: false
+                }
+            },
+          },
+        },
+    series: [
+        {
+            name: 'Red',
+            color: '#e73845',
+            data: [28, 39, 8, 12]
+        },
+        {
+            name: 'Orange',
+            color: '#ff9f1d',
+            data: [17, 32, 22]
+        },
+        {
+            name: 'Green',
+            color: '#00af50',
+            data: [9, 18, 17 ]
         }
-    },
-    series: [{
-        name: 'Series 1',
-        data: [
-            { y: 3, color: "#e73845" },
-            { y: 5, color: "#e73845" },
-            { y: 1, color: "#ff9f1d" },
-        ]
-    }, {
-        name: 'Series 2',
-        data: [
-            { y: 14, color: "#ff9f1d" },
-            { y: 8, color: "#00af50" },
-            { y: 8, color: "#00af50" },
-            { y: 12, color: "#ff9f1d" }
-        ]
-    }, {
-        name: 'Series 3',
-        data: [
-            { y: 2, color: "#00af50" },
-            { y: 2, color: "#00af50" },
-            { y: 6, color: "#e73845" },
-            { y: 3, color: "#e73845" }
-        ]
-    }]
+    ]
 });
+
 
 const weightedLocationChart=document.querySelector(".weighted-outer-wrapper .weighted-inner-wrapper .weighted-chart-container #location-chart-container");
 
 
-Highcharts.chart(weightedLocationChart, {
+
+
+Highcharts.chart( weightedLocationChart, {
     chart: {
-        type: 'column'
+        type: 'column',
     },
+
     title: {
-        text: ''
-    },
-    subtitle: {
-        text: ''
+        text: '',
+        align: 'left',
     },
 
     xAxis: {
-        type: 'category'
-    },
-    yAxis: {
-        title: {
-            text: ''
+        categories: [
+            "Accomodation",
+            "CCR / Ship Office",
+            "Engine Room",
+            "Master's Office",
+            "On Deck",
+            "Steering Room",
+            "Wheel House"
+        ],
+        labels:{
+          useHTML:true,
         },
-        dataLabels:{
-          enabled:true
-        }
+        lineWidth: 0,
 
     },
+    credits:{
+      enabled:false,
+    },
+    yAxis: {
+        min: 0,
+        max:60,
+        tickInterval: 10,  
+        title: '',
+        gridLineColor: '#d1d1d1',
+
+         labels:{
+          useHTML:true,
+        },
+    },
+
     legend: {
         enabled: false
     },
+
     plotOptions: {
-        series: {
+        column: {
+            stacking: 'normal',
             borderWidth: 0,
+            pointPadding: 0.1,
+            groupPadding: 0.15,
+            states: {
+                hover: {
+                    enabled: false
+                }
+            }
+        },
     
-        }
-    },
-
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
-            '<b>{point.y:.2f}%</b> of total<br/>'
-    },
-
+        series: {
+            dataLabels: {
+                enabled: true,
+                useHTML:true,
+            },
+          },
+        },
     series: [
         {
-            name: 'Browsers',
-            colorByPoint: true,
-            stacking: 'normal',
-            data: [
-                {
-                    name: 'Chrome',
-                    y: 63.06,
-                    
-                },
-                {
-                    name: 'Safari',
-                    y: 19.84,
-                    
-                },
-                {
-                    name: 'Firefox',
-                    y: 4.18,
-
-                },
-                {
-                    name: 'Edge',
-                    y: 4.12,
-                 
-                },
-                {
-                    name: 'Opera',
-                    y: 2.33,
-             
-                },
-                {
-                    name: 'Internet Explorer',
-                    y: 0.45,
-                    
-                },
-                {
-                    name: 'Other',
-                    y: 1.582,
-                   
-                },
-                 
-           
-            ],
-            states: {
-              hover: {
-                  enabled: false 
-              }
-          }
-        }
-    ],
-    credits:{
-      enabled:false
-    }
+            name: 'Red',
+            data: [{
+              y:2, color:'#f8c06d', dataLabels: { style: { color: 'var(--input-val-color)' } ,},
+          },
+             {
+              y:19, color:'#e73845',dataLabels: { style: { color: 'white' } ,},},
+              {
+              y:11, color:'#ff9f1d',dataLabels: { style: { color: 'var(--input-val-color)' } ,},},
+              {
+              y:18, color:'#e73845',dataLabels: { style: { color: 'white' } ,},},
+              {
+              y:33, color:'#00af50',dataLabels: { style: { color: 'white' } ,},},
+              {
+              y:8, color:'#e73845',dataLabels: { style: { color: 'white' } ,},},
+              {
+              y:18, color:'#00af50',dataLabels: { style: { color: 'white' } ,},},
+            
+              ]
+        },
+  
+    ]
 });
+
 const duration = 1000; 
 
 function animate(timestamp) {
@@ -1420,3 +1699,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   displayFormData()
 })
 
+
+
+
+/*
+
+tickPixelInterval: window.innerWidth < vwToPixels(30) ? 25 :  // if less than 30vw
+                       window.innerWidth < vwToPixels(40) ? 30 :  // if less than 40vw
+                       window.innerWidth < vwToPixels(50) ? 35 : 40,
+
+                       */

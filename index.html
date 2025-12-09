@@ -58,7 +58,7 @@
                 <button class="menu-btn" type="button"><img src="./assets/images/menu.png" alt="menu"></button>
                 <h2 class="main-header">Audit Analytic Report</h2>
             </div>
-            <img class="logo" src="./assets/images/logo.png" alt="logo">
+            <img class="logo active" src="./assets/images/logo.png" alt="logo">
         </div>
         <section class="audit-datails-wrapper">
             <h3 class="audit-detail-header">Audit Details</h3>
@@ -293,7 +293,7 @@
                             <div class="box"></div>
                         </div>
                         <div class="chart-header-btn-container">
-                            <button type="button"><img src="./assets/images/export.png" alt="export"></button>
+                            <button type="button" class="export-btn"><img src="./assets/images/export.png" alt="export"></button>
                             <button type="button" class="close-chart-btn"><img src="./assets/images/close.png" alt="close"></button>
                         </div>
                     </div>
@@ -354,42 +354,69 @@
                                     <P>Location Category</P>
                                 </div>
                             </div>
-                            <div id="main-chart-container" class="main-chart-container">
+                            <div  class="main-chart-container">
+                                <div id="main-chart-container">
+                                </div>
                             </div>
+                            
                         </div>
                         <div class="main-chart-data-container">
                             <img src="./assets/images/hand.png" class="hand-img" alt="hand">
                             <div class="main-chart-data-header">
                                 <div>
                                     <img src="./assets/images/high.png" alt="high">
-                                    <p>High (<-50 )</p>
+                                    <p>High ( &lt; &hyphen;50 )</p>
                                 </div>
                                 <div>
                                     <img src="./assets/images/medium.png" alt="medium">
-                                    <p>Medium (<-20 ~ 49)</p>
+                                    <p>Medium ( &lt; &hyphen;20 &#126; 49)</p>
                                 </div>
                                 <div>
                                     <img src="./assets/images/low.png" alt="low">
-                                    <p>Low (> -19 )</p>
+                                    <p>Low ( &gt; &hyphen;19 )</p>
                                 </div>
                             </div>
                             <div class="main-chart-data-body">
-                                <div>
-                                    <p>Total CheckList Items <span>:600</span></p>
-                                    <p>Verified Items <span>:567</span></p>
-                                </div>
-                                <div>
-                                    <p>Finding Weighted score <span>:600</span></p>
+                                <div class="main-chart-data-inner-wrapper">
+                                    <div>
+                                        <p class="chart-data-label">Total CheckList Items </p>
+                                        <p class="chart-data-value">: 600</p>
+                                    </div>
+                                    <div>
+                                        <p class="chart-data-label">Verified Items </p>
+                                        <p class="chart-data-value">: 567</p>
+                                    </div>
                                     
                                 </div>
-                                <div>
-                                    <p>Inspection Score <span>:567 (Verified Items + Finding Weighted score ) </span></p>
-                                     <p>Inspection Performance  <span>:567</span></p>
+                                <div class="main-chart-data-inner-wrapper">
+                                    <div>
+                                        <p class="chart-data-label">Finding Weighted score </p>
+                                        <p class="chart-data-value"> : 600</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p>Vessels Potential Risk<span>:High (Weighted Score is <-50 for the shared case) </span></p>
+                                <div class="main-chart-data-inner-wrapper">
+                                    <div>
+                                        
+                                        <p class="chart-data-label">Inspection Score </p>
+                                        <p class="chart-data-value"> :567 (Verified Items + Finding Weighted score ) </p>
+                                       
+                                        
+                                    </div>
+                                    <div>
+                                        <p class="chart-data-label">Inspection Performance </p>
+                                        <p class="chart-data-value"> :567</p>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="main-chart-data-inner-wrapper">
+                                    <div>
+                                        <p class="chart-data-label">Vessels Potential Risk</p>
+                                        <p class="chart-data-value">High (Weighted Score is &lt;-50 for the shared case)</p>
 
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -412,21 +439,21 @@
                             </div>
                         </div>
                         <div class="findings-inner-wrapper">
-                            <div class="findings-chart-container">
+                            <div class="findings-chart-container main-chart-wrapper">
                                 <h3 class="main-chart-header findings-chart-header">
                                     Main Category
                                 </h3>
                                 <div id="main-chart-container" class="main-chart-container">
                                 </div>
                             </div>
-                            <div class="findings-chart-container">
+                            <div class="findings-chart-container sub-chart-wrapper">
                                 <h3 class="sub-chart-header findings-chart-header">
                                     1st Sub Category
                                 </h3>
                                 <div id="sub-chart-container" class="sub-chart-container">
                                 </div>
                             </div>
-                            <div class="findings-chart-container">
+                            <div class="findings-chart-container location-chart-wrapper">
                                 <h3 class="location-chart-header findings-chart-header">
                                     Location Wise
                                 </h3>
@@ -455,21 +482,21 @@
                             </div>
                         </div>
                         <div class="weighted-inner-wrapper">
-                            <div class="weighted-chart-container">
+                            <div class="weighted-chart-container main-chart-wrapper">
                                 <h3 class="main-chart-header weighted-chart-header">
                                     Main Category
                                 </h3>
                                 <div id="main-chart-container" class="main-chart-container">
                                 </div>
                             </div>
-                            <div class="weighted-chart-container">
+                            <div class="weighted-chart-container sub-chart-wrapper">
                                 <h3 class="sub-chart-header weighted-chart-header">
                                     1 st Sub Category
                                 </h3>
                                 <div id="sub-chart-container" class="sub-chart-container">
                                 </div>
                             </div>
-                            <div class="weighted-chart-container">
+                            <div class="weighted-chart-container location-chart-wrapper">
                                 <h3 class="location-chart-header weighted-chart-header">
                                     Location Wise
                                 </h3>
@@ -479,6 +506,147 @@
                             
                         </div>
                     </div>
+                    <div class="detail-analytic-wrapper">
+                        <h3 class="table-header">Detailed Analytic Report</h3>
+                        <table class="analytic-table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" class="col-header">Detailed Sub Category Wise</th>
+                                    <th  colspan="3">POTENTIAL RISKS FINDINGS COUNT</th>
+                                    <th rowspan="2" class="col-header">Weighted Score</th>
+                                    <th colspan="2" >FINDING COUNTS</th>
+                                </tr>
+                                <tr>
+                                  
+                                    <th class="sub-header">Low</th>
+                                    <th class="sub-header">Medium</th>
+                                    <th class="sub-header">High</th>
+                                    <th class="sub-header" >Normal</th>
+                                    <th>Focus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="category">
+                                    <td colspan="7">Accomodatio</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Company Policy</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-5">5</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr class="category">
+                                    <td colspan="7">Carg</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Certi</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-10">10</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Company policy</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-10">10</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">deck</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-10">10</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Document</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-5">5</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Emergency</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-5">5</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Book</td>
+                                    <td>1</td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot yellow"></span><span class="score-30">30</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Training</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-5">5</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Others</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-10">10</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr class="category">
+                                    <td colspan="7">Certificate</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Certificate</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-2">2</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Company</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-2">2</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">grand total</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td><span class="weighted-score"><span class="dot green"></span><span class="score-10">10</span></span></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="report-desc">The content of this document may not be used for purposes other than that for which it has been supplied and may not be reproduced, either wholly or in part, in any way whatsoever, nor may it be used by, or its content divulged to, any other person or third party without prior written consent. Whilst all efforts were made to report accurate and truthful information, SVM Solutions and Technologies Pte. Ltd and/or its assigned nominees make no representations about the suitability of the information contained in this document. This report is issued without any prejudice to any or all parties concerned on the condition that all parties concerned, walve rights to hold the auditing company or author liable in respect of any consequences arising from the use of the information contained for not mentioned) in this report</p>
                 </div>
             </div>
         </section>
@@ -488,6 +656,4 @@
   <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="./assets/js/script.js"></script>
-
-  <!-- <p>The content of this document may not be used for purposes other than that for which it has been supplied and may not be reproduced, either wholly or in part, in any way whatsoever, nor may it be used by, or its content divulged to, any other person or third party without prior written consent. Whilst all efforts were made to report accurate and truthful information, SVM Solutions and Technologies Pte. Ltd and/or its assigned nominees make no representations about the suitability of the information contained in this document. This report is issued without any prejudice to any or all parties concerned on the condition that all parties concerned, walve rights to hold the auditing company or author liable in respect of any consequences arising from the use of the information contained for not mentioned) in this report</p> -->
 </body>
