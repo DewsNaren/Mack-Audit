@@ -669,6 +669,9 @@
     .main-category-wrapper .main-chart-wrapper{
         width: 56.8%;
     }
+    .main-chart-wrapper .main-chart-sub-header-container .main-chart-sub-header p, .main-chart-wrapper .main-chart-sub-header-container .location-chart-sub-header p {
+        font-size: 10px;
+    }
     .main-category-wrapper .main-chart-data-container .main-chart-data-body .main-chart-data-inner-wrapper div .chart-data-label {
         padding: 4px 0;
         font-size: 11px;
