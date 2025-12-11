@@ -152,16 +152,11 @@
         font-size: 13px;
         text-wrap: nowrap;
     }
-    .main-category-wrapper .main-chart-wrapper .highcharts-yaxis-labels span, .main-category-wrapper .main-chart-wrapper .highcharts-xaxis-labels span {
-    font-size: 11px !important;
-}
 
-    .audit-form-content-wrapper .risk-chart-wrapper .highcharts-data-label span {
-        font-size: 15px !important;
+    .findings-inner-wrapper .findings-chart-container .chart-container,
+    .weighted-inner-wrapper .weighted-chart-container .chart-container{
+        height:270px;
     }
-    /* .chart-category-table-wrapper .category-table, .chart-location-table-wrapper .location-table, .detail-analytic-wrapper .analytic-table {
-        font-size: 13px;
-    } */
     .chart-category-table-wrapper .category-table thead, .chart-location-table-wrapper .location-table thead, .detail-analytic-wrapper .analytic-table thead {
         padding: 10px;
     }
@@ -180,7 +175,6 @@
         height: 9px;
     }
     .findings-outer-wrapper .findings-chart-outer-header, .weighted-outer-wrapper .weighted-chart-outer-header {
-        gap: 18px;
         font-size: 13px;
     }
     .main-category-wrapper .main-chart-data-container .main-chart-data-body .main-chart-data-inner-wrapper {
@@ -198,34 +192,68 @@
     .main-category-wrapper .main-chart-wrapper .main-chart-data-container{
         width: 44.2%;
     }
+    .main-category-wrapper .main-chart-data-container .main-chart-data-body .main-chart-data-inner-wrapper .main-chart-data-inner-container {
+        padding: 6px 0;
+    }
     .main-category-wrapper .main-chart-wrapper .main-chart-header {
         border-bottom: 1px solid #999;
     }
     .chart-category-table-wrapper .category-table thead tr th.col-header, .chart-location-table-wrapper .location-table thead tr th.col-header, .detail-analytic-wrapper .analytic-table thead tr th.col-header {
         border-right: 6px solid #ffffff;
     }
-    /* .main-category-wrapper .main-chart-wrapper .highcharts-container{
-        height: 368px !important;
-    } */
+    
     .findings-inner-wrapper .findings-chart-container .location-chart-container .highcharts-xaxis-labels span,
     .weighted-inner-wrapper .weighted-chart-container .location-chart-container .highcharts-xaxis-labels span{
         width: 2.64vw;
         min-width: 40px;
     }
-    
+    .main-category-wrapper .main-chart-container{
+        height: 350px ;
+    }
     .findings-inner-wrapper .findings-chart-container .sub-chart-container .highcharts-data-labels .sub-label, .weighted-inner-wrapper .weighted-chart-container .sub-chart-container .highcharts-data-labels .sub-label {
         font-size: 12px;
     }
-    .main-category-wrapper .main-chart-wrapper .highcharts-yaxis text, .main-category-wrapper .main-chart-wrapper .highcharts-xaxis text {
-        font-size: 12px !important;
+    .main-category-wrapper .main-chart-wrapper .main-y-title,
+    .main-category-wrapper .main-chart-wrapper .main-x-title{
+        font-size: 12px ;
     }
-    .findings-inner-wrapper .main-chart-container .highcharts-yaxis-labels text,
-    .weighted-inner-wrapper .main-chart-container  .highcharts-yaxis-labels text {
-        font-size: 11px !important;
+    .main-category-wrapper .main-chart-wrapper .highcharts-container .bubble-label{
+        font-size: 11px;
     }
- 
-    .findings-inner-wrapper .findings-chart-container .highcharts-yaxis-labels span, .findings-inner-wrapper .findings-chart-container .highcharts-xaxis-labels span, .weighted-inner-wrapper .weighted-chart-container .highcharts-yaxis-labels span, .weighted-inner-wrapper .weighted-chart-container .highcharts-xaxis-labels span {
-        font-size: 0.65vw !important;
+    .bubble-tooltip {
+        font-size: 12px;
+    }
+
+    .bubble-tooltip-title {
+        font-size: 13px;
+    }
+    .findings-inner-wrapper .findings-chart-container .location-chart-container .location-label, .weighted-inner-wrapper .weighted-chart-container .location-chart-container .location-label {
+        font-size: 11px;
+    }
+     .main-category-wrapper .main-chart-data-container .main-chart-data-header div {
+        gap: 10px;
+    }
+    .findings-inner-wrapper .findings-chart-container .highcharts-xaxis-labels span  .sub-x-label,
+    .weighted-inner-wrapper .weighted-chart-container .highcharts-xaxis-labels span  .sub-x-label,
+    .findings-inner-wrapper .findings-chart-container .location-chart-container .suby-y-label,
+    .weighted-inner-wrapper .weighted-chart-container .location-chart-container .sub-y-label{
+        font-size: 0.62vw ;
+    }
+    .polar-tooltip-name {
+        font-size: 13px;
+    }
+
+    .polar-tooltip-value {
+        font-size: 12px;
+    }
+    .detail-analytic-wrapper .analytic-table thead th.sub-header,
+    .detail-analytic-wrapper .analytic-table thead th.count-sub-header,
+    .detail-analytic-wrapper .analytic-table tbody tr td{
+        padding-left: 12px;
+    }
+    .detail-analytic-wrapper tbody .weighted-score .dot {
+        width: 6px;
+        height: 6px;
     }
     .audit-chart-wrapper .report-desc{
         font-size: 13px;
@@ -374,18 +402,10 @@
         font-size: 11px;
         text-wrap: nowrap;
     }
-     .main-category-wrapper .main-chart-wrapper .highcharts-yaxis-labels span, .main-category-wrapper .main-chart-wrapper .highcharts-xaxis-labels span {
-    font-size: 10px !important;
-}
-
-    .audit-form-content-wrapper .risk-chart-wrapper .highcharts-data-label span {
-        font-size: 14px !important;
-    }
+   
+ 
     .chart-category-table-wrapper .category-table, .chart-location-table-wrapper .location-table, .detail-analytic-wrapper .analytic-table {
         font-size: 11px;
-    }
-    .chart-category-table-wrapper .table-wrapper-header, .chart-location-table-wrapper .table-wrapper-header, .detail-analytic-wrapper .table-header {
-        font-size: 0.95vw;
     }
 
     .chart-category-table-wrapper .category-table thead, .chart-location-table-wrapper .location-table thead, .detail-analytic-wrapper .analytic-table thead {
@@ -398,6 +418,11 @@
         padding: 8px;
         font-size: 0.755vw;
     }
+     .main-category-wrapper .main-chart-wrapper .main-y-title,
+    .main-category-wrapper .main-chart-wrapper .main-x-title{
+        font-size: 11px ;
+    }
+    
     .main-category-wrapper .main-chart-data-container {
         border-bottom: 3px solid rgb(116, 116, 116);
     }
@@ -405,12 +430,18 @@
     .main-chart-wrapper .main-chart-sub-header-container .location-chart-sub-header span{
         height: 7px;
     }
+    .main-category-wrapper .main-chart-data-container .main-chart-data-header div {
+        gap: 8px;
+    }
     .findings-outer-wrapper .findings-chart-outer-header, .weighted-outer-wrapper .weighted-chart-outer-header {
         gap: 18px;
         font-size: 12px;
     }
     .main-category-wrapper .main-chart-data-container .main-chart-data-body .main-chart-data-inner-wrapper {
         border-bottom: 1px solid #d0d0d0;
+        padding: 4px 0;
+    }
+    .main-category-wrapper .main-chart-data-container .main-chart-data-body .main-chart-data-inner-wrapper .main-chart-data-inner-container {
         padding: 4px 0;
     }
     .findings-outer-wrapper .findings-outer-header .findings-header,
@@ -421,6 +452,9 @@
     .main-category-wrapper .main-chart-wrapper{
         width: 56.8%;
     }
+    .main-category-wrapper .main-chart-container {
+        height: 300px;
+    }
     .main-category-wrapper .main-chart-wrapper .main-chart-header {
         border-bottom: 1px solid #999;
     }
@@ -430,38 +464,33 @@
     .chart-category-table-wrapper .category-table thead tr th.col-header, .chart-location-table-wrapper .location-table thead tr th.col-header, .detail-analytic-wrapper .analytic-table thead tr th.col-header {
         border-right: 5px solid #ffffff;
     }
-    /* .main-category-wrapper .main-chart-wrapper .highcharts-container{
-        height: 368px !important;
-    } */
-    .weighted-inner-wrapper .weighted-chart-container .highcharts-yaxis-labels span,
-    .weighted-inner-wrapper .weighted-chart-container  .highcharts-xaxis-labels span {
-        font-size: 11px !important;
+   
+
+    .findings-inner-wrapper .findings-chart-container .chart-container,
+    .weighted-inner-wrapper .weighted-chart-container .chart-container{
+        height: 240px;
     }
-    .findings-inner-wrapper .main-chart-container .highcharts-yaxis-labels text,
-    .weighted-inner-wrapper .main-chart-container  .highcharts-yaxis-labels text {
-        font-size: 11px !important;
+    .findings-inner-wrapper .main-chart-container .highcharts-yaxis-labels .polar-y-label, .weighted-inner-wrapper .main-chart-container .highcharts-yaxis-labels .polar-y-label {
+        font-size: 0.62vw;
     }
-    .weighted-inner-wrapper .main-chart-container .highcharts-xaxis-labels span b{
-        font-size: 13px !important;
+    .polar-tooltip-name {
+        font-size: 12px;
     }
 
-    .findings-inner-wrapper .findings-chart-container .sub-chart-container .highcharts-data-labels span{
-        font-size:12px !important
+    .polar-tooltip-value {
+        font-size: 11px;
     }
-    .findings-inner-wrapper .findings-chart-container .sub-chart-container .highcharts-data-labels span{
-        font-size:12px !important
+     .main-category-wrapper .main-chart-wrapper .highcharts-container .bubble-label{
+        font-size: 10px;
     }
-    .findings-inner-wrapper .findings-chart-container .highcharts-yaxis-labels span, .findings-inner-wrapper .findings-chart-container .highcharts-xaxis-labels span {
-        font-size: 11px !important;
+    .bubble-tooltip {
+        font-size: 11px;
     }
-    .weighted-inner-wrapper .weighted-chart-container .sub-chart-container .highcharts-data-labels span {
-        font-size: 11px !important;
-    }
-    .findings-inner-wrapper .findings-chart-container .highcharts-yaxis-labels span, .findings-inner-wrapper .findings-chart-container .highcharts-xaxis-labels span, .weighted-inner-wrapper .weighted-chart-container .highcharts-yaxis-labels span, .weighted-inner-wrapper .weighted-chart-container .highcharts-xaxis-labels span {
-        font-size: 0.65vw !important;
+     .bubble-tooltip .bubble-tooltip-title {
+        font-size: 12px;
     }
     .findings-inner-wrapper .findings-chart-container .sub-chart-container .highcharts-data-labels .sub-label, .weighted-inner-wrapper .weighted-chart-container .sub-chart-container .highcharts-data-labels .sub-label {
-        font-size: 11px;
+        font-size: 10px;
     }
      .findings-inner-wrapper .findings-chart-container .location-chart-container .highcharts-xaxis-labels span,
      .weighted-inner-wrapper .weighted-chart-container .location-chart-container .highcharts-xaxis-labels span{
@@ -469,10 +498,29 @@
         min-width: 32px;
     }
     .findings-inner-wrapper .findings-chart-container .location-chart-container .location-label, .weighted-inner-wrapper .weighted-chart-container .location-chart-container .location-label {
+        font-size: 10px;
+    }
+    .findings-inner-wrapper .findings-chart-container .highcharts-yaxis-labels span .sub-y-label, .weighted-inner-wrapper .weighted-chart-container .highcharts-yaxis-labels span .sub-y-label, .findings-inner-wrapper .findings-chart-container .highcharts-yaxis-labels span .location-y-label, .weighted-inner-wrapper .weighted-chart-container .highcharts-yaxis-labels span .location-y-label {
+        font-size: 9px;
+    }
+    .detail-analytic-wrapper .analytic-table thead th.sub-header,
+    .detail-analytic-wrapper .analytic-table thead th.count-sub-header,
+    .detail-analytic-wrapper .analytic-table tbody tr td{
+        padding-left: 10px;
+    }
+    .findings-inner-wrapper .findings-chart-container .location-chart-container,
+    .weighted-inner-wrapper .weighted-chart-container .location-chart-container{
+        width: 100%;
+    }
+    .findings-inner-wrapper .findings-chart-container .location-chart-container .location-x-label, .weighted-inner-wrapper .weighted-chart-container .location-chart-container .location-x-label {
         width: 3vw;
-
+        text-align: center;
+        white-space: normal;
         font-size: 0.63vw;
     }
+    .findings-inner-wrapper .findings-chart-container .highcharts-xaxis-labels span .sub-x-label, .weighted-inner-wrapper .weighted-chart-container .highcharts-xaxis-labels span .sub-x-label, .findings-inner-wrapper .findings-chart-container .location-chart-container .suby-y-label, .weighted-inner-wrapper .weighted-chart-container .location-chart-container .sub-y-label {
+        font-size: 0.68vw;
+    }       
     .audit-chart-wrapper .report-desc{
         font-size: 12px;
     }
@@ -631,9 +679,7 @@
     .audit-form-content-wrapper .performance-chart-wrapper .performance-header, .audit-form-content-wrapper .risk-chart-wrapper .risk-chart-header {
         font-size: 11px;
     }
-    .audit-form-content-wrapper .risk-chart-wrapper .highcharts-data-label span {
-        font-size: 13px !important;
-    }
+    
     .main-category-wrapper .main-chart-data-container .main-chart-data-body .main-chart-data-inner-container .chart-data-value p {
         font-size: 10px;
     }
@@ -644,10 +690,10 @@
         font-size: 0.95vw;
     }
     .chart-category-table-wrapper .category-table tbody tr:last-child td, .chart-location-table-wrapper .location-table tbody tr:last-child td, .detail-analytic-wrapper .analytic-table tbody tr:last-child td {
-        font-size: 13px;
+        font-size: 11px;
     }
     .chart-category-table-wrapper .category-table tbody tr:last-child td:last-of-type, .chart-location-table-wrapper .location-table tbody tr:last-child td:last-of-type, .detail-analytic-wrapper .analytic-table tbody tr:last-child td:last-of-type {
-        font-size: 14px;
+        font-size: 12px;
     }
     .chart-category-table-wrapper .category-table thead, .chart-location-table-wrapper .location-table thead, .detail-analytic-wrapper .analytic-table thead {
         padding: 8px;
@@ -692,6 +738,12 @@
     .main-category-wrapper .main-chart-data-container  .main-chart-data-body .main-chart-data-inner-wrapper div .chart-data-label{
         min-width: 130px;
     }
+    .main-category-wrapper .main-chart-container {
+        height: 280px;
+    }
+    .findings-inner-wrapper .findings-chart-container .chart-container, .weighted-inner-wrapper .weighted-chart-container .chart-container {
+        height: 220px;
+    }
     .main-category-wrapper .main-chart-data-container .main-chart-data-body .main-chart-data-inner-wrapper div .chart-data-value {
         font-size: 11px;
     }
@@ -704,54 +756,15 @@
     .chart-category-table-wrapper .category-table thead tr th.col-header, .chart-location-table-wrapper .location-table thead tr th.col-header, .detail-analytic-wrapper .analytic-table thead tr th.col-header {
         border-right: 5px solid #ffffff;
     }
-    /* .main-category-wrapper .main-chart-wrapper .highcharts-container{
-        height: 368px !important;
-    } */
-    /* .weighted-inner-wrapper .weighted-chart-container .highcharts-yaxis-labels span,
-    .weighted-inner-wrapper .weighted-chart-container  .highcharts-xaxis-labels span {
-        font-size: 10px !important;
-    } */
-    .findings-inner-wrapper .main-chart-container .highcharts-yaxis-labels text,
-    .weighted-inner-wrapper .main-chart-container  .highcharts-yaxis-labels text {
-        font-size: 10px !important;
-    }
-    .weighted-inner-wrapper .main-chart-container .highcharts-xaxis-labels span b{
-        font-size: 12px !important;
-    }
-    .findings-inner-wrapper .findings-chart-container .sub-chart-container .highcharts-data-labels span{
-        font-size:11px !important
-    }
-    .findings-inner-wrapper .findings-chart-container .sub-chart-container .highcharts-data-labels span{
-        font-size:11px !important
-    }
-    .findings-inner-wrapper .findings-chart-container .highcharts-yaxis-labels span, .findings-inner-wrapper .findings-chart-container .highcharts-xaxis-labels span {
-        font-size: 10px !important;
-    }
-    .weighted-inner-wrapper .weighted-chart-container .sub-chart-container .highcharts-data-labels span {
-        font-size: 10px !important;
+    .main-category-wrapper .main-chart-container{
+        height: 300px ;
     }
     .findings-inner-wrapper .findings-chart-container .location-chart-container .location-label, .weighted-inner-wrapper .weighted-chart-container .location-chart-container .location-label {
-    width: 3vw;
-    text-align: center;
-    white-space: normal;
-    font-size: 0.65vw;
-    }
-    .detail-analytic-wrapper .analytic-table {
-        width: 80%;
-    }
-     .findings-inner-wrapper .findings-chart-container .location-chart-container .highcharts-xaxis-labels span,
-     .weighted-inner-wrapper .weighted-chart-container .location-chart-container .highcharts-xaxis-labels span{
-        width: 2.64vw;
-        min-width: 18px;
+        font-size: 9px;
     }
     .audit-chart-wrapper .report-desc{
-        font-size: 12px;
+        font-size: 11px;
     }
-    .weighted-inner-wrapper .weighted-chart-container .location-chart-container .highcharts-container, .findings-inner-wrapper .findings-chart-container .location-chart-container .highcharts-container {
-        min-height: 250px;
-    }
-    .weighted-inner-wrapper .weighted-chart-container .sub-chart-container .highcharts-container, .findings-inner-wrapper .findings-chart-container .sub-chart-container .highcharts-container {
-        min-height: 250px;
-    }
+    
 
 }
