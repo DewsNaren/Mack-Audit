@@ -373,6 +373,7 @@ main{
     max-height: 100vh;
     position: relative;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 header.collapsed+main{
     margin-left: clamp(70px, 97px, 5vw);
@@ -1322,16 +1323,17 @@ header.collapsed+main{
 }
 .main-category-wrapper .main-chart-data-container  .main-chart-data-body .main-chart-data-inner-wrapper .main-chart-data-inner-container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding: 8px 0;
 }
-.main-category-wrapper .main-chart-data-container  .main-chart-data-body .main-chart-data-inner-wrapper div .chart-data-label{
-    
+.main-category-wrapper .main-chart-data-container  .main-chart-data-body .main-chart-data-inner-wrapper .main-chart-data-inner-container.desc-container {
+    align-items: flex-start;
+}
+.main-category-wrapper .main-chart-data-container  .main-chart-data-body .main-chart-data-inner-wrapper div .chart-data-label{  
     color: var(--input-val-color);
     font-size: 0.84vw;
     width: 9.5vw;
     min-width: 9.5vw;
-
     margin-right: 4px;
     white-space: nowrap;
 }
@@ -1341,7 +1343,7 @@ header.collapsed+main{
     font-size: 0.8vw;
     text-wrap: nowrap;
 }
- .main-chart-data-body .main-chart-data-inner-container .chart-data-value p:last-of-type{
+ .main-chart-data-body .main-chart-data-inner-container.desc-container .chart-data-value p:last-of-type{
     padding-top: 5px;
  }
 .main-category-wrapper .main-chart-data-container  .main-chart-data-body .main-chart-data-inner-wrapper div span{
@@ -1498,10 +1500,11 @@ header.collapsed+main{
 .weighted-inner-wrapper .main-chart-container .highcharts-xaxis-labels .polar-label .name{
    font-size: 0.63vw;
    color: rgb(0, 0, 0);
-   max-width: 4vw;
+   max-width: 7vw;
    white-space: normal;
    text-wrap: wrap;
    text-align: left;
+   text-transform: capitalize;
 }
 .polar-tooltip {
     display: flex;
@@ -1597,7 +1600,7 @@ header.collapsed+main{
    padding-left: 10px;
 }
 .detail-analytic-wrapper .analytic-table tbody tr td.subcategory{
-    padding-left: 30px;
+    padding-left: 1.6vw;
 }
 .detail-analytic-wrapper .analytic-table thead th.count-header{
     padding-inline: 1.05vw;
